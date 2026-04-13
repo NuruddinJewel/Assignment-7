@@ -1,0 +1,123 @@
+[
+    {
+        "id": 1,
+        "name": "Maya Patel",
+        "picture": "https://randomuser.me/api/portraits/women/44.jpg",
+        "email": "maya.patel@gmail.com",
+        "days_since_contact": 12,
+        "status": "active",
+        "tags": [
+            "college",
+            "close friend"
+        ],
+        "bio": "Software engineer at Spotify. Loves hiking and tries every new coffee shop in the city.",
+        "goal": 14,
+        "next_due_date": "2026-04-25"
+    },
+    {
+        "id": 2,
+        "name": "Jordan Ellis",
+        "picture": "https://randomuser.me/api/portraits/men/32.jpg",
+        "email": "j.ellis@outlook.com",
+        "days_since_contact": 47,
+        "status": "overdue",
+        "tags": [
+            "work",
+            "mentor"
+        ],
+        "bio": "Product manager turned indie founder. Building a SaaS tool for remote teams. Big NBA fan.",
+        "goal": 30,
+        "next_due_date": "2026-04-15"
+    },
+    {
+        "id": 3,
+        "name": "Sofia Reyes",
+        "picture": "https://randomuser.me/api/portraits/women/68.jpg",
+        "email": "sofia.reyes@icloud.com",
+        "days_since_contact": 5,
+        "status": "active",
+        "tags": [
+            "childhood",
+            "close friend",
+            "family-friend"
+        ],
+        "bio": "Pediatric nurse in Austin, TX. Obsessed with true crime podcasts and growing her balcony garden.",
+        "goal": 21,
+        "next_due_date": "2026-05-01"
+    },
+    {
+        "id": 4,
+        "name": "Marcus Thompson",
+        "picture": "https://randomuser.me/api/portraits/men/76.jpg",
+        "email": "marcust@protonmail.com",
+        "days_since_contact": 91,
+        "status": "overdue",
+        "tags": [
+            "college",
+            "roommate"
+        ],
+        "bio": "High school history teacher and part-time DJ. Lives in Chicago with his dog, Biscuit.",
+        "goal": 60,
+        "next_due_date": "2026-04-13"
+    },
+    {
+        "id": 5,
+        "name": "Aiko Tanaka",
+        "picture": "https://randomuser.me/api/portraits/women/12.jpg",
+        "email": "aiko.tanaka@gmail.com",
+        "days_since_contact": 3,
+        "status": "active",
+        "tags": [
+            "work",
+            "close friend"
+        ],
+        "bio": "UX designer at a fintech startup in NYC. Passionate about accessible design and ceramics on weekends.",
+        "goal": 14,
+        "next_due_date": "2026-04-24"
+    },
+    {
+        "id": 6,
+        "name": "Caleb Nguyen",
+        "picture": "https://randomuser.me/api/portraits/men/54.jpg",
+        "email": "caleb.nguyen@yahoo.com",
+        "days_since_contact": 29,
+        "status": "active",
+        "tags": [
+            "gym",
+            "neighbor"
+        ],
+        "bio": "Personal trainer and nutrition coach. Recently ran his first marathon and won't let anyone forget it.",
+        "goal": 30,
+        "next_due_date": "2026-04-28"
+    },
+    {
+        "id": 7,
+        "name": "Priya Sharma",
+        "picture": "https://randomuser.me/api/portraits/women/28.jpg",
+        "email": "priya.s@gmail.com",
+        "days_since_contact": 120,
+        "status": "overdue",
+        "tags": [
+            "college",
+            "study group"
+        ],
+        "bio": "PhD candidate in computational biology at MIT. Hardcore bookworm — reads 50+ books a year.",
+        "goal": 45,
+        "next_due_date": "2026-04-13"
+    },
+    {
+        "id": 8,
+        "name": "Ethan Brooks",
+        "picture": "https://randomuser.me/api/portraits/men/18.jpg",
+        "email": "ethanbrooks@hey.com",
+        "days_since_contact": 18,
+        "status": "active",
+        "tags": [
+            "travel",
+            "close friend"
+        ],
+        "bio": "Freelance travel photographer and blogger. Currently based in Lisbon, perpetually planning the next trip.",
+        "goal": 21,
+        "next_due_date": "2026-04-27"
+    }
+]
