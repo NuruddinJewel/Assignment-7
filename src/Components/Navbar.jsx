@@ -4,14 +4,13 @@ import { House, Clock, ChartLine } from 'lucide-react';
 
 const Navbar = () => {
     const navLinkClasses = ({ isActive }) =>
-        `flex items-center gap-2 px-5 py-2.5 rounded-lg transition-all duration-200 font-semibold
-        ${isActive
-            ? "bg-[#2D4F42] text-white"
-            : "text-gray-700 hover:text-[#2D4F42]"
+        `flex items-center gap-2 px-5 py-2.5 rounded-lg transition-all duration-200 font-semibold ${isActive
+            ? "bg-[#2D4F42] text-white shadow-md"
+            : "text-gray-700 hover:bg-gray-100 hover:text-[#2D4F42]"
         }`;
 
     return (
-        <div className="navbar bg-base-100 px-6 py-4">
+        <nav className="navbar bg-white border-b border-gray-100 px-6 py-4">
             {/* Left side: Logo */}
             <div className="flex-1">
                 <NavLink to="/" className="flex items-center gap-1 cursor-pointer select-none">
@@ -43,7 +42,7 @@ const Navbar = () => {
                     </li>
                 </ul>
             </div>
-        </div>
+        </nav>
     );
 };
 
