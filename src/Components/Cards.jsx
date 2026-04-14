@@ -3,8 +3,6 @@ import { Link } from 'react-router-dom';
 import { FiClock } from 'react-icons/fi';
 import { useFriends } from '../context/FriendsContext';
 
-// ── helpers live outside any component ──────────────────────────────────────
-
 const TAG_COLORS = [
     'bg-violet-100 text-violet-700',
     'bg-sky-100 text-sky-700',
@@ -43,7 +41,6 @@ const getStatusBadge = (friend) => {
     );
 };
 
-// ── sub-component also lives outside ────────────────────────────────────────
 
 const FriendCard = ({ friend }) => (
     <Link to={`/friend/${friend.id}`} className="block group">
@@ -78,7 +75,7 @@ const FriendCard = ({ friend }) => (
     </Link>
 );
 
-// ── main component ───────────────────────────────────────────────────────────
+
 
 const Cards = () => {
     const { friends, loading } = useFriends();

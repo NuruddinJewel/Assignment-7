@@ -3,7 +3,7 @@ import { useParams, Link } from 'react-router-dom';
 import { FiArrowLeft, FiMail, FiClock, FiTag, FiTarget } from 'react-icons/fi';
 import { useFriends } from '../context/FriendsContext';
 
-// ── main component ───────────────────────────────────────────────────────────
+
 
 const FriendDetail = () => {
     const { id } = useParams();
