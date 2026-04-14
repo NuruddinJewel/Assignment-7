@@ -1,6 +1,7 @@
 import React from "react";
 import ReactDOM from "react-dom/client";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
+import { Toaster } from "react-hot-toast";
 import Layout from "./Components/Layout/Layout.jsx";
 import Cards from "./Components/Cards.jsx";
 import FriendDetail from "./Components/FriendDetail.jsx";
@@ -14,32 +15,36 @@ const router = createBrowserRouter([
     path: "/",
     element: <Layout />,
     children: [
-      {
-        index: true,
-        element: <Cards />,   // ← Cards renders below Banner on "/"
-      },
-      {
-        path: "friends",
-        element: <Cards />,
-      },
-      {
-        path: "friend/:id",
-        element: <FriendDetail />,
-      },
-      {
-        path: "timeline",
-        element: <Timeline />,
-      },
-      {
-        path: "stats",
-        element: <Stats />,
-      },
+      { index: true, element: <Cards /> },
+      { path: "friends", element: <Cards /> },
+      { path: "friend/:id", element: <FriendDetail /> },
+      { path: "timeline", element: <Timeline /> },
+      { path: "stats", element: <Stats /> },
     ],
   },
 ]);
 
 ReactDOM.createRoot(document.getElementById("root")).render(
   <FriendsProvider>
+    {/* Toaster lives here — available globally across all pages */}
+    <Toaster
+      position="top-right"
+      toastOptions={{
+        duration: 3000,
+        style: {
+          borderRadius: '12px',
+          background: '#1F2937',
+          color: '#fff',
+          fontSize: '14px',
+        },
+        success: {
+          iconTheme: {
+            primary: '#2D4F42',
+            secondary: '#fff',
+          },
+        },
+      }}
+    />
     <RouterProvider router={router} />
   </FriendsProvider>
 );

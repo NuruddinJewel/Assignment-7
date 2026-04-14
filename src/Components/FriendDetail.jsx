@@ -1,26 +1,19 @@
 import React, { useState } from 'react';
 import { useParams, Link } from 'react-router-dom';
 import { useFriends } from '../context/FriendsContext';
+import toast from 'react-hot-toast';
 import {
-    FiArrowLeft,
-    FiPhone,
-    FiMessageSquare,
-    FiVideo,
-    FiArchive,
-    FiTrash2,
-    FiBellOff
+    FiArrowLeft, FiPhone, FiMessageSquare, FiVideo,
+    FiArchive, FiTrash2, FiBellOff
 } from 'react-icons/fi';
 
 const getStatusBadge = (friend) => {
     const { days_since_contact, goal, status } = friend;
     const ratio = days_since_contact / goal;
-
-    if (status === 'overdue' || days_since_contact > goal) {
+    if (status === 'overdue' || days_since_contact > goal)
         return <span className="badge badge-sm bg-red-500 text-white border-0 px-3">Overdue</span>;
-    }
-    if (ratio >= 0.8) {
+    if (ratio >= 0.8)
         return <span className="badge badge-sm bg-amber-400 text-white border-0 px-3">Almost Due</span>;
-    }
     return <span className="badge badge-sm bg-emerald-500 text-white border-0 px-3">On Track</span>;
 };
 
@@ -31,21 +24,19 @@ const TAG_COLORS = [
     'bg-pink-100 text-pink-700',
     'bg-orange-100 text-orange-700',
 ];
-
 const getTagColor = (tag) => TAG_COLORS[tag.charCodeAt(0) % TAG_COLORS.length];
 
-const formatDate = (dateStr) => {
-    const date = new Date(dateStr);
-    return date.toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' });
-};
+const formatDate = (dateStr) =>
+    new Date(dateStr).toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' });
 
-// ── Main Component ───────────────────────────────────────────────────────────
+// ── icon map for toast ────────────────────────────────────────────────────────
+const TYPE_ICON = { Call: '📞', Text: '💬', Video: '🎥' };
+
+// ── main component ────────────────────────────────────────────────────────────
 
 const FriendDetail = () => {
     const { id } = useParams();
-    // Destructure addTimelineEntry from your Context
     const { friends, loading, addTimelineEntry } = useFriends();
-
     const [editingGoal, setEditingGoal] = useState(false);
     const [goalDays, setGoalDays] = useState(null);
 
@@ -66,16 +57,16 @@ const FriendDetail = () => {
 
     const currentGoal = goalDays ?? friend.goal;
 
-    // Handler for the timeline update
+    // ── only change from your current file: toast instead of alert ──
     const handleCheckIn = (type) => {
         addTimelineEntry(type, friend.name);
-        // Alert 
-        alert(`${type} logged with ${friend.name}! Check your Timeline.`);
+        toast.success(`${TYPE_ICON[type]} ${type} with ${friend.name} logged!`, {
+            position: 'top-right',
+        });
     };
 
     return (
         <div className="max-w-4xl mx-auto py-6 px-4">
-            {/* Back link */}
             <Link
                 to="/"
                 className="inline-flex items-center gap-1.5 text-sm text-gray-400 hover:text-gray-700 mb-6 transition-colors"
@@ -88,7 +79,6 @@ const FriendDetail = () => {
 
                 {/* ── LEFT COLUMN ─────────────────────────────────────── */}
                 <div className="flex flex-col gap-3">
-                    {/* Profile card */}
                     <div className="bg-white border border-gray-100 rounded-2xl p-6 flex flex-col items-center text-center gap-2 shadow-sm">
                         <img
                             src={friend.picture}
@@ -100,46 +90,39 @@ const FriendDetail = () => {
                         />
                         <h2 className="text-base font-bold text-gray-800">{friend.name}</h2>
                         <div>{getStatusBadge(friend)}</div>
-
                         <div className="flex flex-wrap justify-center gap-1 mt-1">
                             {friend.tags.map((tag) => (
-                                <span
-                                    key={tag}
-                                    className={`text-xs font-medium px-2 py-0.5 rounded-full uppercase tracking-wide ${getTagColor(tag)}`}
-                                >
+                                <span key={tag} className={`text-xs font-medium px-2 py-0.5 rounded-full uppercase tracking-wide ${getTagColor(tag)}`}>
                                     {tag}
                                 </span>
                             ))}
                         </div>
-
-                        <p className="text-xs text-gray-400 italic mt-1 leading-relaxed">
-                            "{friend.bio}"
-                        </p>
+                        <p className="text-xs text-gray-400 italic mt-1 leading-relaxed">"{friend.bio}"</p>
                         <p className="text-xs text-gray-400">
-                            Preferred: <a href={`mailto:${friend.email}`} className="text-[#2D4F42] hover:underline">{friend.email}</a>
+                            Preferred:{' '}
+                            <a href={`mailto:${friend.email}`} className="text-[#2D4F42] hover:underline">
+                                {friend.email}
+                            </a>
                         </p>
                     </div>
 
-                    {/* Action buttons */}
                     <div className="bg-white border border-gray-100 rounded-2xl shadow-sm overflow-hidden divide-y divide-gray-100">
                         <button className="w-full flex items-center gap-3 px-5 py-3.5 text-sm text-gray-600 hover:bg-gray-50 transition-colors">
-                            <FiBellOff size={15} className="text-gray-400" />
-                            Snooze 2 Weeks
+                            <FiBellOff size={15} className="text-gray-400" /> Snooze 2 Weeks
                         </button>
                         <button className="w-full flex items-center gap-3 px-5 py-3.5 text-sm text-gray-600 hover:bg-gray-50 transition-colors">
-                            <FiArchive size={15} className="text-gray-400" />
-                            Archive
+                            <FiArchive size={15} className="text-gray-400" /> Archive
                         </button>
                         <button className="w-full flex items-center gap-3 px-5 py-3.5 text-sm text-red-500 hover:bg-red-50 transition-colors">
-                            <FiTrash2 size={15} className="text-red-400" />
-                            Delete
+                            <FiTrash2 size={15} className="text-red-400" /> Delete
                         </button>
                     </div>
                 </div>
 
                 {/* ── RIGHT COLUMN ────────────────────────────────────── */}
                 <div className="md:col-span-2 flex flex-col gap-4">
-                    {/* Stats row */}
+
+                    {/* Stats */}
                     <div className="grid grid-cols-3 gap-3">
                         <div className="bg-white border border-gray-100 rounded-2xl shadow-sm p-5 flex flex-col items-center justify-center text-center">
                             <span className="text-3xl font-bold text-gray-800">{friend.days_since_contact}</span>
@@ -155,7 +138,7 @@ const FriendDetail = () => {
                         </div>
                     </div>
 
-                    {/* Relationship Goal Section */}
+                    {/* Relationship Goal */}
                     <div className="bg-white border border-gray-100 rounded-2xl shadow-sm p-5">
                         <div className="flex items-center justify-between mb-3">
                             <h3 className="text-sm font-semibold text-gray-700">Relationship Goal</h3>
@@ -166,7 +149,6 @@ const FriendDetail = () => {
                                 {editingGoal ? 'Save' : 'Edit'}
                             </button>
                         </div>
-
                         {editingGoal ? (
                             <div className="flex items-center gap-2">
                                 <span className="text-sm text-gray-500">Connect every</span>
@@ -184,8 +166,6 @@ const FriendDetail = () => {
                                 Connect every <strong className="text-gray-800">{currentGoal} days</strong>
                             </p>
                         )}
-
-                        {/* Progress bar */}
                         <div className="mt-4">
                             <div className="flex justify-between text-xs text-gray-400 mb-1">
                                 <span>{friend.days_since_contact}d elapsed</span>
@@ -205,31 +185,24 @@ const FriendDetail = () => {
                         </div>
                     </div>
 
-                    {/* Quick Check-In Section */}
+                    {/* Quick Check-In */}
                     <div className="bg-white border border-gray-100 rounded-2xl shadow-sm p-5">
                         <h3 className="text-sm font-semibold text-gray-700 mb-4">Quick Check-In</h3>
                         <div className="grid grid-cols-3 gap-3">
-                            <button
-                                onClick={() => handleCheckIn('Call')}
-                                className="flex flex-col items-center justify-center gap-2 border border-gray-100 rounded-xl py-4 hover:bg-gray-50 hover:border-gray-200 transition-all duration-200 text-sm text-gray-600"
-                            >
-                                <FiPhone size={20} className="text-gray-500" />
-                                Call
-                            </button>
-                            <button
-                                onClick={() => handleCheckIn('Text')}
-                                className="flex flex-col items-center justify-center gap-2 border border-gray-100 rounded-xl py-4 hover:bg-gray-50 hover:border-gray-200 transition-all duration-200 text-sm text-gray-600"
-                            >
-                                <FiMessageSquare size={20} className="text-gray-500" />
-                                Text
-                            </button>
-                            <button
-                                onClick={() => handleCheckIn('Video')}
-                                className="flex flex-col items-center justify-center gap-2 border border-gray-100 rounded-xl py-4 hover:bg-gray-50 hover:border-gray-200 transition-all duration-200 text-sm text-gray-600"
-                            >
-                                <FiVideo size={20} className="text-gray-500" />
-                                Video
-                            </button>
+                            {[
+                                { type: 'Call', Icon: FiPhone },
+                                { type: 'Text', Icon: FiMessageSquare },
+                                { type: 'Video', Icon: FiVideo },
+                            ].map(({ type, Icon }) => (
+                                <button
+                                    key={type}
+                                    onClick={() => handleCheckIn(type)}
+                                    className="flex flex-col items-center justify-center gap-2 border border-gray-100 rounded-xl py-4 hover:bg-gray-50 hover:border-gray-200 transition-all duration-200 text-sm text-gray-600"
+                                >
+                                    <Icon size={20} className="text-gray-500" />
+                                    {type}
+                                </button>
+                            ))}
                         </div>
                     </div>
 
