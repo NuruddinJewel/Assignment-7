@@ -1,7 +1,15 @@
 import React, { useState } from 'react';
 import { useParams, Link } from 'react-router-dom';
 import { useFriends } from '../context/FriendsContext';
-import { FiArrowLeft, FiPhone, FiMessageSquare, FiVideo, FiArchive, FiTrash2, FiBellOff } from 'react-icons/fi';
+import {
+    FiArrowLeft,
+    FiPhone,
+    FiMessageSquare,
+    FiVideo,
+    FiArchive,
+    FiTrash2,
+    FiBellOff
+} from 'react-icons/fi';
 
 const getStatusBadge = (friend) => {
     const { days_since_contact, goal, status } = friend;
@@ -23,6 +31,7 @@ const TAG_COLORS = [
     'bg-pink-100 text-pink-700',
     'bg-orange-100 text-orange-700',
 ];
+
 const getTagColor = (tag) => TAG_COLORS[tag.charCodeAt(0) % TAG_COLORS.length];
 
 const formatDate = (dateStr) => {
@@ -30,11 +39,13 @@ const formatDate = (dateStr) => {
     return date.toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' });
 };
 
-// ── main component ────────────────────────────────────────────────────────────
+// ── Main Component ───────────────────────────────────────────────────────────
 
 const FriendDetail = () => {
     const { id } = useParams();
-    const { friends, loading } = useFriends();
+    // Destructure addTimelineEntry from your Context
+    const { friends, loading, addTimelineEntry } = useFriends();
+
     const [editingGoal, setEditingGoal] = useState(false);
     const [goalDays, setGoalDays] = useState(null);
 
@@ -55,8 +66,15 @@ const FriendDetail = () => {
 
     const currentGoal = goalDays ?? friend.goal;
 
+    // Handler for the timeline update
+    const handleCheckIn = (type) => {
+        addTimelineEntry(type, friend.name);
+        // Alert 
+        alert(`${type} logged with ${friend.name}! Check your Timeline.`);
+    };
+
     return (
-        <div className="max-w-4xl mx-auto py-6">
+        <div className="max-w-4xl mx-auto py-6 px-4">
             {/* Back link */}
             <Link
                 to="/"
@@ -70,7 +88,6 @@ const FriendDetail = () => {
 
                 {/* ── LEFT COLUMN ─────────────────────────────────────── */}
                 <div className="flex flex-col gap-3">
-
                     {/* Profile card */}
                     <div className="bg-white border border-gray-100 rounded-2xl p-6 flex flex-col items-center text-center gap-2 shadow-sm">
                         <img
@@ -82,11 +99,8 @@ const FriendDetail = () => {
                             }}
                         />
                         <h2 className="text-base font-bold text-gray-800">{friend.name}</h2>
-
-                        {/* Status badge */}
                         <div>{getStatusBadge(friend)}</div>
 
-                        {/* Tags */}
                         <div className="flex flex-wrap justify-center gap-1 mt-1">
                             {friend.tags.map((tag) => (
                                 <span
@@ -98,12 +112,9 @@ const FriendDetail = () => {
                             ))}
                         </div>
 
-                        {/* Bio */}
                         <p className="text-xs text-gray-400 italic mt-1 leading-relaxed">
                             "{friend.bio}"
                         </p>
-
-                        {/* Email */}
                         <p className="text-xs text-gray-400">
                             Preferred: <a href={`mailto:${friend.email}`} className="text-[#2D4F42] hover:underline">{friend.email}</a>
                         </p>
@@ -128,7 +139,6 @@ const FriendDetail = () => {
 
                 {/* ── RIGHT COLUMN ────────────────────────────────────── */}
                 <div className="md:col-span-2 flex flex-col gap-4">
-
                     {/* Stats row */}
                     <div className="grid grid-cols-3 gap-3">
                         <div className="bg-white border border-gray-100 rounded-2xl shadow-sm p-5 flex flex-col items-center justify-center text-center">
@@ -145,7 +155,7 @@ const FriendDetail = () => {
                         </div>
                     </div>
 
-                    {/* Relationship Goal */}
+                    {/* Relationship Goal Section */}
                     <div className="bg-white border border-gray-100 rounded-2xl shadow-sm p-5">
                         <div className="flex items-center justify-between mb-3">
                             <h3 className="text-sm font-semibold text-gray-700">Relationship Goal</h3>
@@ -195,19 +205,28 @@ const FriendDetail = () => {
                         </div>
                     </div>
 
-                    {/* Quick Check-In */}
+                    {/* Quick Check-In Section */}
                     <div className="bg-white border border-gray-100 rounded-2xl shadow-sm p-5">
                         <h3 className="text-sm font-semibold text-gray-700 mb-4">Quick Check-In</h3>
                         <div className="grid grid-cols-3 gap-3">
-                            <button className="flex flex-col items-center justify-center gap-2 border border-gray-100 rounded-xl py-4 hover:bg-gray-50 hover:border-gray-200 transition-all duration-200 text-sm text-gray-600">
+                            <button
+                                onClick={() => handleCheckIn('Call')}
+                                className="flex flex-col items-center justify-center gap-2 border border-gray-100 rounded-xl py-4 hover:bg-gray-50 hover:border-gray-200 transition-all duration-200 text-sm text-gray-600"
+                            >
                                 <FiPhone size={20} className="text-gray-500" />
                                 Call
                             </button>
-                            <button className="flex flex-col items-center justify-center gap-2 border border-gray-100 rounded-xl py-4 hover:bg-gray-50 hover:border-gray-200 transition-all duration-200 text-sm text-gray-600">
+                            <button
+                                onClick={() => handleCheckIn('Text')}
+                                className="flex flex-col items-center justify-center gap-2 border border-gray-100 rounded-xl py-4 hover:bg-gray-50 hover:border-gray-200 transition-all duration-200 text-sm text-gray-600"
+                            >
                                 <FiMessageSquare size={20} className="text-gray-500" />
                                 Text
                             </button>
-                            <button className="flex flex-col items-center justify-center gap-2 border border-gray-100 rounded-xl py-4 hover:bg-gray-50 hover:border-gray-200 transition-all duration-200 text-sm text-gray-600">
+                            <button
+                                onClick={() => handleCheckIn('Video')}
+                                className="flex flex-col items-center justify-center gap-2 border border-gray-100 rounded-xl py-4 hover:bg-gray-50 hover:border-gray-200 transition-all duration-200 text-sm text-gray-600"
+                            >
                                 <FiVideo size={20} className="text-gray-500" />
                                 Video
                             </button>

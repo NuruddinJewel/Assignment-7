@@ -4,6 +4,7 @@ const FriendsContext = createContext();
 
 export const FriendsProvider = ({ children }) => {
     const [friends, setFriends] = useState([]);
+    const [timeline, setTimeline] = useState([]); // Added timeline state
     const [loading, setLoading] = useState(true);
 
     useEffect(() => {
@@ -11,12 +12,25 @@ export const FriendsProvider = ({ children }) => {
             .then(res => res.json())
             .then(json => {
                 setFriends(json);
+                // Initialize timeline if your JSON has it, or keep empty
+                setTimeline(json.timeline || []);
                 setLoading(false);
             });
     }, []);
 
+    // Function to add new activity
+    const addTimelineEntry = (type, personName) => {
+        const newEntry = {
+            id: Date.now(), // Unique ID based on timestamp
+            type: type,
+            name: personName,
+            date: new Date().toISOString(), // Current date
+        };
+        setTimeline(prev => [newEntry, ...prev]);
+    };
+
     return (
-        <FriendsContext.Provider value={{ friends, loading }}>
+        <FriendsContext.Provider value={{ friends, timeline, loading, addTimelineEntry }}>
             {children}
         </FriendsContext.Provider>
     );
