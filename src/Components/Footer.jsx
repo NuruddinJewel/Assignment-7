@@ -5,7 +5,7 @@ const Footer = () => {
     return (
         <footer className="bg-[#2D4F42] text-white">
             {/* Top section */}
-            <div className="flex flex-col items-center justify-center py-14 px-6 text-center border-b border-white/10">
+            <div className="flex flex-col items-center justify-center py-4 px-6 text-center border-b border-white/10">
                 <h2 className="text-5xl font-bold tracking-tight mb-4">
                     <span>Keen</span><span>Keeper</span>
                 </h2>
@@ -18,7 +18,7 @@ const Footer = () => {
                 <div className="flex items-center gap-3">
                     <a
                         href="#"
-                        className="w-10 h-10 rounded-full bg-black flex items-center justify-center hover:bg-bg-gray-800 transition-colors duration-200"
+                        className="w-10 h-10 rounded-full bg-black flex items-center justify-center hover:bg-gray-800 transition-colors duration-200"
                         aria-label="YouTube"
                     >
                         <FaYoutube size={16} className="text-white" />

@@ -41,7 +41,6 @@ const getStatusBadge = (friend) => {
     );
 };
 
-
 const FriendCard = ({ friend }) => (
     <Link to={`/friend/${friend.id}`} className="block group">
         <div className="bg-white rounded-2xl border border-gray-100 p-5 flex flex-col items-center gap-3 shadow-sm hover:shadow-md hover:-translate-y-0.5 transition-all duration-200 cursor-pointer h-full">

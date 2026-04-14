@@ -4,7 +4,7 @@ import { FaPlus } from 'react-icons/fa';
 
 const Banner = () => {
     return (
-        <div className="hero min-h-100 bg-base-100">
+        <div className="hero min-h-70 bg-base-100">
             <div className="hero-content text-center">
                 <div className="max-w-2xl">
                     {/* Main Heading */}
@@ -19,12 +19,12 @@ const Banner = () => {
                     </p>
 
                     {/* Action Button */}
-                    <Link to="/add-friend">
-                        <button className="btn bg-[#2D4F43] hover:bg-[#233d34] border-none text-white normal-case px-8 rounded-md gap-2">
-                            <FaPlus className="text-sm" />
-                            Add a Friend
-                        </button>
-                    </Link>
+                    {/* <Link to="/add-friend"> */}
+                    <button className="btn bg-[#2D4F43] hover:bg-[#233d34] border-none text-white normal-case px-8 rounded-md gap-2">
+                        <FaPlus className="text-sm" />
+                        Add a Friend
+                    </button>
+                    {/* </Link> */}
                 </div>
             </div>
         </div>

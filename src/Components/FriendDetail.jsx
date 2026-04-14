@@ -136,13 +136,14 @@ const FriendDetail = () => {
                     </div>
 
                     <div className="bg-white border border-gray-100 rounded-2xl shadow-sm overflow-hidden divide-y divide-gray-50">
-                        <button className="w-full flex items-center gap-3 px-5 py-4 text-sm text-gray-600 hover:bg-gray-50 transition-colors">
+                        {/* <button className="w-full flex items-center gap-3 px-5 py-4 text-sm text-gray-600 hover:bg-gray-50 transition-colors"> */}
+                        <button className="w-full flex items-center gap-3 px-5 py-4 text-sm text-gray-600 hover:bg-gray-50 active:scale-[0.98] active:bg-gray-100 transition-all">
                             <FiBellOff size={16} className="text-gray-400" /> Snooze 2 Weeks
                         </button>
-                        <button className="w-full flex items-center gap-3 px-5 py-4 text-sm text-gray-600 hover:bg-gray-50 transition-colors">
+                        <button className="w-full flex items-center gap-3 px-5 py-4 text-sm text-gray-600 hover:bg-gray-50 active:scale-[0.98] active:bg-gray-100 transition-all">
                             <FiArchive size={16} className="text-gray-400" /> Archive Friend
                         </button>
-                        <button className="w-full flex items-center gap-3 px-5 py-4 text-sm text-red-500 hover:bg-red-50 transition-colors">
+                        <button className="w-full flex items-center gap-3 px-5 py-4 text-sm text-red-500 hover:bg-red-50 active:bg-red-100 active:scale-[0.98] transition-all">
                             <FiTrash2 size={16} className="text-red-400" /> Delete Contact
                         </button>
                     </div>
