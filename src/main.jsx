@@ -1,11 +1,13 @@
 import React from "react";
 import ReactDOM from "react-dom/client";
-import { createBrowserRouter, RouterProvider } from "react-router-dom"
-import App from './App.jsx';
-import Layout from './Components/Layout/Layout.jsx';
-import './index.css';
+import { createBrowserRouter, RouterProvider } from "react-router-dom";
+import Layout from "./Components/Layout/Layout.jsx";
+import Cards from "./Components/Cards.jsx";
+import FriendDetail from "./Components/FriendDetail.jsx";
 import Timeline from "./Components/Timeline.jsx";
 import Stats from "./Components/Stats.jsx";
+import { FriendsProvider } from "./context/FriendsContext.jsx";
+import "./index.css";
 
 const router = createBrowserRouter([
   {
@@ -14,7 +16,15 @@ const router = createBrowserRouter([
     children: [
       {
         index: true,
-        element: <App />,
+        element: <Cards />,   // ← Cards renders below Banner on "/"
+      },
+      {
+        path: "friends",
+        element: <Cards />,
+      },
+      {
+        path: "friend/:id",
+        element: <FriendDetail />,
       },
       {
         path: "timeline",
@@ -29,5 +39,7 @@ const router = createBrowserRouter([
 ]);
 
 ReactDOM.createRoot(document.getElementById("root")).render(
-  <RouterProvider router={router} />
+  <FriendsProvider>
+    <RouterProvider router={router} />
+  </FriendsProvider>
 );
