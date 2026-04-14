@@ -7,6 +7,7 @@ import Cards from "./Components/Cards.jsx";
 import FriendDetail from "./Components/FriendDetail.jsx";
 import Timeline from "./Components/Timeline.jsx";
 import Stats from "./Components/Stats.jsx";
+import NotFound from "./Components/Notfound.jsx";
 import { FriendsProvider } from "./context/FriendsContext.jsx";
 import "./index.css";
 
@@ -20,13 +21,13 @@ const router = createBrowserRouter([
       { path: "friend/:id", element: <FriendDetail /> },
       { path: "timeline", element: <Timeline /> },
       { path: "stats", element: <Stats /> },
+      { path: "*", element: <NotFound /> },
     ],
   },
 ]);
 
 ReactDOM.createRoot(document.getElementById("root")).render(
   <FriendsProvider>
-    {/* Toaster lives here — available globally across all pages */}
     <Toaster
       position="top-right"
       toastOptions={{
