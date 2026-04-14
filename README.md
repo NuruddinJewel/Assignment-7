@@ -1,16 +1,19 @@
-# React + Vite
+# KeenKeeper
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+> Your personal shelf of meaningful connections. Browse, tend, and nurture the relationships that matter most.
 
-Currently, two official plugins are available:
+## 🛠️ Technologies Used
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+- **React** – Component-based UI development
+- **React Router DOM** – Client-side routing and navigation
+- **Tailwind CSS** – Utility-first styling
+- **DaisyUI** – Tailwind component library for polished UI elements
+- **VS Code** – Development environment
 
-## React Compiler
+## ✨ Key Features
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+1. **Friend Relationship Tracking** – Maintain a visual shelf of your closest friends with profile cards showing last contact date, interaction frequency, and relationship health status (On Track, Needs Attention, Overdue).
 
-## Expanding the ESLint configuration
+2. **Smart Dashboard Stats** – Get an at-a-glance overview of your social health with metrics like Total Friends, friends On Track, those Needing Attention, and total Interactions This Month.
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+3. **Status-Based Prioritization** – Color-coded status badges help you instantly identify which friendships need nurturing, so you never let an important relationship fade without realizing it.
